@@ -212,12 +212,12 @@ middleware.apiv2 = function (req, res, next) {
 
 middleware.canUser = function (action) {
   return function (req, res, next) {
-    if (!req.user) return res.status(401).json({ success: false, error: 'Not Authorized for this API call.' })
+    if (!req.user) return res.status(401).json({ success: false, error: 'Bu işlemi yapmak için yetkiniz yok.' })
     const permissions = require('../permissions')
     const perm = permissions.canThis(req.user.role, action)
     if (perm) return next()
 
-    return res.status(401).json({ success: false, error: 'Not Authorized for this API call.' })
+    return res.status(401).json({ success: false, error: 'Bu işlemi yapmak için yetkiniz yok.' })
   }
 }
 
@@ -228,7 +228,7 @@ middleware.isAdmin = function (req, res, next) {
 
   if (role.isAdmin) return next()
 
-  return res.status(401).json({ success: false, error: 'Not Authorized for this API call.' })
+  return res.status(401).json({ success: false, error: 'Bu işlemi yapmak için yetkiniz yok.' })
 }
 
 middleware.isAgentOrAdmin = function (req, res, next) {
@@ -238,7 +238,7 @@ middleware.isAgentOrAdmin = function (req, res, next) {
 
   if (role.isAgent || role.isAdmin) return next()
 
-  return res.status(401).json({ success: false, error: 'Not Authorized for this API call.' })
+  return res.status(401).json({ success: false, error: 'Bu işlemi yapmak için yetkiniz yok.' })
 }
 
 middleware.isAgent = function (req, res, next) {
@@ -247,7 +247,7 @@ middleware.isAgent = function (req, res, next) {
 
   if (role.isAgent) return next()
 
-  return res.status(401).json({ success: false, error: 'Not Authorized for this API call.' })
+  return res.status(401).json({ success: false, error: 'Bu işlemi yapmak için yetkiniz yok.' })
 }
 
 middleware.isSupport = middleware.isAgent
