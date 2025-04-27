@@ -62,14 +62,14 @@ const eventTicketCreated = require('./events/event_ticket_created')
     let content, comment, assigneeId, ticketUid
     switch (data.type) {
       case 1:
-        title = 'Ticket #' + ticket.uid + ' Created'
-        content = ticket.owner.fullname + ' submitted a ticket'
+        title = 'Çağrı#' + ticket.uid + ' Oluşturuldu'
+        content = ticket.owner.fullname + ' bir çağrı oluşturdu'
         users = _.map(ticket.group.sendMailTo, function (o) {
           return o._id
         })
         break
       case 2:
-        title = 'Ticket #' + ticket.uid + ' Updated'
+        title = 'Çağrı#' + ticket.uid + ' Güncellendi'
         content = _.last(ticket.history).description
         comment = _.last(ticket.comments)
         users = _.compact(
@@ -81,7 +81,7 @@ const eventTicketCreated = require('./events/event_ticket_created')
         )
         break
       case 3:
-        title = message.owner.fullname + ' sent you a message'
+        title = message.owner.fullname + ' size bir mesaj gönderdi'
         break
       case 4:
         assigneeId = data.assigneeId
@@ -89,8 +89,8 @@ const eventTicketCreated = require('./events/event_ticket_created')
         ticket = {}
         ticket._id = data.ticketId
         ticket.uid = data.ticketUid
-        title = 'Assigned to Ticket #' + ticketUid
-        content = 'You were assigned to Ticket #' + ticketUid
+        title = 'Atama: Çağrı#' + ticketUid
+        content = 'Atandınız: Çağrı#' + ticketUid
         users = [assigneeId]
         break
       default:
@@ -98,7 +98,7 @@ const eventTicketCreated = require('./events/event_ticket_created')
     }
 
     if (_.size(users) < 1) {
-      winston.debug('No users to push too | UserSize: ' + _.size(users))
+      winston.debug('Gönderilecek kullanıcı yok | UserSize: ' + _.size(users))
       return
     }
 
@@ -165,7 +165,7 @@ const eventTicketCreated = require('./events/event_ticket_created')
 
             const notification = new NotificationSchema({
               owner: ticket.owner,
-              title: 'Comment Added to Ticket#' + ticket.uid,
+              title: 'Yorum eklendi: Çağrı#' + ticket.uid,
               message: ticket.subject,
               type: 1,
               data: { ticket: ticket },
@@ -183,7 +183,7 @@ const eventTicketCreated = require('./events/event_ticket_created')
 
             const notification = new NotificationSchema({
               owner: ticket.assignee,
-              title: 'Comment Added to Ticket#' + ticket.uid,
+              title: 'Yorum eklendi: Çağrı#' + ticket.uid,
               message: ticket.subject,
               type: 2,
               data: { ticket: ticket },
@@ -255,7 +255,7 @@ const eventTicketCreated = require('./events/event_ticket_created')
                     .then(function (html) {
                       const mailOptions = {
                         to: emails.join(),
-                        subject: 'Updated: Ticket #' + ticket.uid + '-' + ticket.subject,
+                        subject: 'Güncellendi: Çağrı#' + ticket.uid + '-' + ticket.subject,
                         html: html,
                         generateTextFromHTML: true
                       }

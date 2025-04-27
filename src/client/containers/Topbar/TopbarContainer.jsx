@@ -176,7 +176,7 @@ class TopbarContainer extends React.Component {
                     <li className='top-bar-icon'>
                       <PDropdownTrigger target={this.conversationsDropdownPartial}>
                         <a
-                          title={'Conversations'}
+                          title={'Yazışmalar'}
                           className='no-ajaxy uk-vertical-align'
                           onClick={e => TopbarContainer.onConversationsClicked(e)}
                         >

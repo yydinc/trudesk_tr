@@ -64,15 +64,15 @@ class ViewAllNotificationsModal extends React.Component {
     return (
       <BaseModal large={true}>
         <div className='uk-modal-header'>
-          <h2>Notifications</h2>
+          <h2>Bildirimler</h2>
         </div>
         <div className='uk-modal-content' style={{ height: '400px', overflow: 'auto' }}>
           <table className='notificationsTable'>
             <thead>
               <tr>
-                <th className={'type'}>Type</th>
-                <th className={'title'}>Title</th>
-                <th className={'date'}>Date</th>
+                <th className={'type'}>Tür</th>
+                <th className={'title'}>Başlık</th>
+                <th className={'date'}>Tarih</th>
               </tr>
             </thead>
             <tbody>
@@ -106,7 +106,7 @@ class ViewAllNotificationsModal extends React.Component {
           </table>
         </div>
         <div className='uk-modal-footer uk-text-right'>
-          <Button text={'Close'} flat={true} waves={true} onClick={() => this.props.hideModal()} />
+          <Button text={'Kapat'} flat={true} waves={true} onClick={() => this.props.hideModal()} />
         </div>
       </BaseModal>
     )

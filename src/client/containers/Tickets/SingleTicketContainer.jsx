@@ -81,8 +81,8 @@ const fetchTicket = parent => {
 
 const showPriorityConfirm = () => {
   UIkit.modal.confirm(
-    'Selected Priority does not exist for this ticket type. Priority has reset to the default for this type.' +
-      '<br><br><strong>Please select a new priority</strong>',
+    'Seçili önem seviyesi bu çağrı türü için bulunmamaktadır. Önem seviyesi varsayılan olarak ayarlandı.' +
+      '<br><br><strong>Lütfen yeni bir önem seviyesi seçin</strong>',
     () => {},
     { cancelButtonClass: 'uk-hidden' }
   )
@@ -299,7 +299,7 @@ class SingleTicketContainer extends React.Component {
                 style={{ width: 360, maxWidth: 360, minWidth: 360 }}
               >
                 <div className='page-title-border-right relative' style={{ padding: '0 30px' }}>
-                  <p>Ticket #{this.ticket.uid}</p>
+                  <p>Çağrı #{this.ticket.uid}</p>
                   <StatusSelector
                     ticketId={this.ticket._id}
                     status={this.ticket.status._id}
@@ -314,12 +314,12 @@ class SingleTicketContainer extends React.Component {
                 <div className='page-content-left full-height scrollable'>
                   <div className='ticket-details-wrap uk-position-relative uk-clearfix'>
                     <div className='ticket-assignee-wrap uk-clearfix' style={{ paddingRight: 30 }}>
-                      <h4>Assignee</h4>
+                      <h4>Sorumlu</h4>
                       <div className='ticket-assignee uk-clearfix'>
                         {hasTicketUpdate && (
                           <a
                             role='button'
-                            title='Set Assignee'
+                            title='Sorumlu ata'
                             style={{ float: 'left' }}
                             className='relative no-ajaxy'
                             onClick={() => this.props.socket.emit(TICKETS_ASSIGNEE_LOAD)}
@@ -342,7 +342,7 @@ class SingleTicketContainer extends React.Component {
                           />
                         )}
                         <div className='ticket-assignee-details'>
-                          {!this.ticket.assignee && <h3>No User Assigned</h3>}
+                          {!this.ticket.assignee && <h3>Sorumlu atanılmamış</h3>}
                           {this.ticket.assignee && (
                             <Fragment>
                               <h3>{this.ticket.assignee.fullname}</h3>
@@ -373,7 +373,7 @@ class SingleTicketContainer extends React.Component {
                         {/* Type */}
                         <div className='uk-width-1-2 uk-float-left nopadding'>
                           <div className='marginright5'>
-                            <span>Type</span>
+                            <span>Tür</span>
                             {hasTicketUpdate && (
                               <select
                                 value={this.ticket.type._id}
@@ -415,7 +415,7 @@ class SingleTicketContainer extends React.Component {
                         {/* Priority */}
                         <div className='uk-width-1-2 uk-float-left nopadding'>
                           <div className='marginleft5'>
-                            <span>Priority</span>
+                            <span>Önem Seviyesi</span>
                             {hasTicketUpdate && (
                               <select
                                 name='tPriority'
@@ -442,7 +442,7 @@ class SingleTicketContainer extends React.Component {
                         </div>
                         {/*  Group */}
                         <div className='uk-width-1-1 nopadding uk-clearfix'>
-                          <span>Group</span>
+                          <span>Grup</span>
                           {hasTicketUpdate && (
                             <select
                               value={this.ticket.group._id}
@@ -465,7 +465,7 @@ class SingleTicketContainer extends React.Component {
                         </div>
                         {/*  Due Date */}
                         <div className='uk-width-1-1 p-0'>
-                          <span>Due Date</span> {hasTicketUpdate && <span>-&nbsp;</span>}
+                          <span>Bitiş Tarihi</span> {hasTicketUpdate && <span>-&nbsp;</span>}
                           {hasTicketUpdate && (
                             <div className={'uk-display-inline'}>
                               <a
@@ -478,7 +478,7 @@ class SingleTicketContainer extends React.Component {
                                   })
                                 }}
                               >
-                                Clear
+                                Temizle
                               </a>
                               <DatePicker
                                 name={'ticket_due_date'}
@@ -505,7 +505,7 @@ class SingleTicketContainer extends React.Component {
                         {/* Tags */}
                         <div className='uk-width-1-1 nopadding'>
                           <span>
-                            Tags
+                            Etiketler
                             {hasTicketUpdate && (
                               <Fragment>
                                 <span> - </span>
@@ -521,7 +521,7 @@ class SingleTicketContainer extends React.Component {
                                       })
                                     }}
                                   >
-                                    Edit Tags
+                                    Etiketleri Düzenle
                                   </a>
                                 </div>
                               </Fragment>
@@ -590,7 +590,7 @@ class SingleTicketContainer extends React.Component {
                         helpers.scrollToBottom('.page-content-right', true)
                       }}
                     >
-                      Add Comment
+                      Yorum yap
                     </a>
                   </div>
                   <div
@@ -656,7 +656,7 @@ class SingleTicketContainer extends React.Component {
                           />
                           <TruTabSelector
                             selectorId={1}
-                            label='Comments'
+                            label='Yorumlar'
                             showBadge={true}
                             badgeText={this.ticket ? this.ticket.comments && this.ticket.comments.length : 0}
                           />
@@ -794,7 +794,7 @@ class SingleTicketContainer extends React.Component {
                           <TruTabWrapper style={{ paddingLeft: 85 }}>
                             <TruTabSelectors showTrack={false}>
                               {helpers.canUser('comments:create', true) && (
-                                <TruTabSelector selectorId={0} label={'Comment'} active={true} />
+                                <TruTabSelector selectorId={0} label={'Yorum'} active={true} />
                               )}
                               {helpers.canUser('tickets:notes', true) && (
                                 <TruTabSelector
@@ -823,7 +823,7 @@ class SingleTicketContainer extends React.Component {
                                       className='uk-button uk-button-accent'
                                       style={{ padding: '10px 15px' }}
                                     >
-                                      Post Comment
+                                      Yorum Gönder
                                     </button>
                                   </div>
                                 </div>

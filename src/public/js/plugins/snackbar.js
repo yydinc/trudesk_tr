@@ -30,7 +30,7 @@
     width: 'auto',
 
     showAction: true,
-    actionText: 'Dismiss',
+    actionText: 'Kapat',
     actionTextColor: '#4caf50',
 
     backgroundColor: '#323232',

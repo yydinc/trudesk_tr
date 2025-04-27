@@ -120,12 +120,12 @@ class ProfileContainer extends React.Component {
   onSaveProfileClicked = e => {
     e.preventDefault()
     if ((this.fullname && this.fullname.length) > 50 || (this.email && this.email.length > 50)) {
-      helpers.UI.showSnackbar('Field length too long', true)
+      helpers.UI.showSnackbar('Alan çok uzun', true)
       return
     }
 
     if (!this._validateEmail(this.email)) {
-      helpers.UI.showSnackbar('Invalid Email', true)
+      helpers.UI.showSnackbar('Geçersiz E-posta adresi', true)
       return
     }
 
@@ -150,7 +150,7 @@ class ProfileContainer extends React.Component {
         this.editingProfile = false
         helpers.forceSessionUpdate().then(() => {
           this.props.setSessionUser()
-          helpers.UI.showSnackbar('Profile saved successfully.')
+          helpers.UI.showSnackbar('Profil başarıyla kaydedildi.')
         })
       })
   }
@@ -159,17 +159,17 @@ class ProfileContainer extends React.Component {
     e.preventDefault()
 
     if (!this.currentPassword || !this.newPassword || !this.confirmPassword) {
-      helpers.UI.showSnackbar('Invalid Form Data')
+      helpers.UI.showSnackbar('Geçersiz şifre')
       return
     }
 
     if (this.currentPassword.length < 4 || this.newPassword.length < 4 || this.confirmPassword.length < 4) {
-      helpers.UI.showSnackbar('Password length is too short', true)
+      helpers.UI.showSnackbar('Şifre çok kısa', true)
       return
     }
 
     if (this.currentPassword.length > 255 || this.newPassword.length > 255 || this.confirmPassword.length > 255) {
-      helpers.UI.showSnackbar('Password length is too long', true)
+      helpers.UI.showSnackbar('Şifre çok uzun', true)
       return
     }
 
@@ -181,14 +181,14 @@ class ProfileContainer extends React.Component {
       })
       .then(res => {
         if (res.data && res.data.success) {
-          helpers.UI.showSnackbar('Password Updated Successfully')
+          helpers.UI.showSnackbar('Şifre başarıyla değiştirildi')
           setTimeout(() => {
             window.location.reload()
           }, 1000)
         }
       })
       .catch(error => {
-        let errorMsg = 'Invalid Request'
+        let errorMsg = 'Geçersiz istek'
         if (error && error.response && error.response.data && error.response.data.error)
           errorMsg = error.response.data.error
 
@@ -285,7 +285,7 @@ class ProfileContainer extends React.Component {
 
     return (
       <>
-        <PageTitle title={'Profile'} />
+        <PageTitle title={'Profil'} />
         <PageContent>
           <TruCard
             header={<div />}
@@ -329,7 +329,7 @@ class ProfileContainer extends React.Component {
                     </p>
                   </div>
                   <Button
-                    text={'Edit Profile'}
+                    text={'Profili düzenle'}
                     small={true}
                     waves={true}
                     style={'primary'}
@@ -351,16 +351,16 @@ class ProfileContainer extends React.Component {
               <div>
                 <TruTabWrapper style={{ padding: '0' }}>
                   <TruTabSelectors showTrack={true}>
-                    <TruTabSelector selectorId={0} label={'Profile'} active={true} />
-                    <TruTabSelector selectorId={1} label={'Security'} />
-                    <TruTabSelector selectorId={2} label={'Preferences'} />
+                    <TruTabSelector selectorId={0} label={'Profil'} active={true} />
+                    <TruTabSelector selectorId={1} label={'Güvenlik'} />
+                    <TruTabSelector selectorId={2} label={'Tercihler'} />
                   </TruTabSelectors>
                   <TruTabSection sectionId={0} active={true} style={{ minHeight: 480 }}>
                     <div style={{ maxWidth: 900, padding: '10px 25px' }}>
-                      <h4 style={{ marginBottom: 15 }}>Work Information</h4>
+                      <h4 style={{ marginBottom: 15 }}>İş Bilgileri</h4>
                       <div style={{ display: 'flex' }}>
                         <InfoItem
-                          label={'Name'}
+                          label={'İsim'}
                           prop={this.props.sessionUser.fullname}
                           paddingLeft={0}
                           paddingRight={30}
@@ -368,14 +368,14 @@ class ProfileContainer extends React.Component {
                           onUpdate={val => (this.fullname = val)}
                         />
                         <InfoItem
-                          label={'Title'}
+                          label={'Ünvan'}
                           prop={this.props.sessionUser.title}
                           paddingLeft={30}
                           paddingRight={30}
                           onUpdate={val => (this.title = val)}
                         />
                         <InfoItem
-                          label={'Company Name'}
+                          label={'Firma Adı'}
                           prop={this.props.sessionUser.companyName}
                           paddingRight={0}
                           paddingLeft={30}
@@ -384,14 +384,14 @@ class ProfileContainer extends React.Component {
                       </div>
                       <div style={{ display: 'flex', marginTop: 25 }}>
                         <InfoItem
-                          label={'Work Number'}
+                          label={'Çalışan Numarası'}
                           prop={this.props.sessionUser.workNumber}
                           paddingRight={30}
                           paddingLeft={0}
                           onUpdate={val => (this.workNumber = val)}
                         />
                         <InfoItem
-                          label={'Mobile Number'}
+                          label={'Cep Telefonu'}
                           prop={this.props.sessionUser.mobileNumber}
                           paddingLeft={30}
                           paddingRight={0}
@@ -399,24 +399,24 @@ class ProfileContainer extends React.Component {
                         />
                       </div>
                       <Spacer top={25} bottom={25} showBorder={true} />
-                      <h4 style={{ marginBottom: 15 }}>Other Information</h4>
+                      <h4 style={{ marginBottom: 15 }}>Diğer Bilgiler</h4>
                       <div style={{ display: 'flex', marginTop: 25 }}>
                         <InfoItem
-                          label={'Facebook Url'}
+                          label={'Facebook'}
                           prop={this.props.sessionUser.facebookUrl}
                           paddingLeft={0}
                           paddingRight={30}
                           onUpdate={val => (this.facebookUrl = val)}
                         />
                         <InfoItem
-                          label={'LinkedIn Url'}
+                          label={'LinkedIn'}
                           prop={this.props.sessionUser.linkedinUrl}
                           paddingLeft={30}
                           paddingRight={30}
                           onUpdate={val => (this.linkedinUrl = val)}
                         />
                         <InfoItem
-                          label={'Twitter Url'}
+                          label={'Twitter'}
                           prop={this.props.sessionUser.twitterUrl}
                           paddingLeft={30}
                           paddingRight={0}
@@ -426,12 +426,12 @@ class ProfileContainer extends React.Component {
                       {this.editingProfile && (
                         <div className={'uk-display-flex uk-margin-large-top'}>
                           <Button
-                            text={'Save'}
+                            text={'Kaydet'}
                             style={'primary'}
                             small={true}
                             onClick={e => this.onSaveProfileClicked(e)}
                           />
-                          <Button text={'Cancel'} small={true} onClick={() => (this.editingProfile = false)} />
+                          <Button text={'İptal'} small={true} onClick={() => (this.editingProfile = false)} />
                         </div>
                       )}
                     </div>
@@ -439,7 +439,7 @@ class ProfileContainer extends React.Component {
                   <TruTabSection sectionId={1} style={{ minHeight: 480 }}>
                     <div style={{ maxWidth: 600, padding: '25px 0' }}>
                       <TruAccordion
-                        headerContent={'Change Password'}
+                        headerContent={'Şifreyi Değiştir'}
                         content={
                           <div>
                             <form onSubmit={e => this.onUpdatePasswordClicked(e)}>
@@ -448,30 +448,30 @@ class ProfileContainer extends React.Component {
                                 style={{ display: 'flex', alignItems: 'center' }}
                               >
                                 <i className='material-icons mr-10' style={{ opacity: 0.5 }}>
-                                  info
+                                  bilgi
                                 </i>
                                 <p style={{ lineHeight: '18px' }}>
-                                  After changing your password, you will be logged out of all sessions.
+                                  Şifrenizi değiştirdikten sonra tüm oturumlar sonlanacaktır..
                                 </p>
                               </div>
                               <div>
                                 <div className={'uk-margin-medium-bottom'}>
-                                  <label>Current Password</label>
+                                  <label>Eski Şifre</label>
                                   <Input type={'password'} onChange={v => (this.currentPassword = v)} />
                                 </div>
                                 <div className={'uk-margin-medium-bottom'}>
-                                  <label>New Password</label>
+                                  <label>Yeni Şifre</label>
                                   <Input type={'password'} onChange={v => (this.newPassword = v)} />
                                 </div>
                                 <div className={'uk-margin-medium-bottom'}>
-                                  <label>Confirm Password</label>
+                                  <label>Yeni Şifre</label>
                                   <Input type={'password'} onChange={v => (this.confirmPassword = v)} />
                                 </div>
                               </div>
                               <div>
                                 <Button
                                   type={'submit'}
-                                  text={'Update Password'}
+                                  text={'Şifreyi Güncelle'}
                                   style={'primary'}
                                   small={true}
                                   extraClass={'uk-width-1-1'}
@@ -483,24 +483,23 @@ class ProfileContainer extends React.Component {
                         }
                       />
                       <TruAccordion
-                        headerContent={'Two-Factor Authentication'}
+                        headerContent={'İki Aşamalı Doğrulama'}
                         content={
                           <div>
                             {!this.props.sessionUser.hasL2Auth && (
                               <div>
                                 {!this.l2Step2 && (
                                   <div>
-                                    <h4 style={{ fontWeight: 500 }}>Two-factor authentication is not enabled yet</h4>
+                                    <h4 style={{ fontWeight: 500 }}>İki aşamalı doğrulama henüz aktifleştirilmedi.</h4>
                                     <p style={{ fontSize: '12px', fontWeight: 400 }}>
-                                      Enabling two-factor authentication adds an extra layer of security to your
-                                      accounts. Once enabled, you will be required to enter both your password and an
-                                      authentication code in order to sign into your account. After you successfully
-                                      enable two-factor authentication, you will not be able to login unless you enter
-                                      the correct authentication code.
+                                      
+                                    İki faktörlü kimlik doğrulamayı etkinleştirmek, hesaplarınıza ekstra bir güvenlik katmanı ekler.
+                                    Etkinleştirildiğinde, hesabınıza giriş yapabilmek için hem şifrenizi hem de bir doğrulama kodunu girmeniz gerekecektir.
+                                    İki faktörlü kimlik doğrulamayı başarıyla etkinleştirdikten sonra, doğru doğrulama kodunu girmediğiniz sürece giriş yapamazsınız.
                                     </p>
                                     <div>
                                       <Button
-                                        text={'Enable'}
+                                        text={'Aktifleştir'}
                                         style={'primary'}
                                         small={true}
                                         waves={true}
@@ -514,8 +513,7 @@ class ProfileContainer extends React.Component {
                                     <div style={{ width: 400 }}>
                                       <div style={{ display: 'flex', marginTop: 15, flexDirection: 'column' }}>
                                         <p style={{ fontWeight: 500, marginBottom: 40 }}>
-                                          Scan the QR code below using any authenticator app such as Authy, Google
-                                          Authenticator, LastPass Authenticator, Microsoft Authenticator
+                                        Aşağıdaki QR kodunu Authy, Google Authenticator, LastPass Authenticator veya Microsoft Authenticator gibi herhangi bir kimlik doğrulama uygulamasıyla tarayın.
                                         </p>
                                         <div style={{ alignSelf: 'center', marginBottom: 40 }}>
                                           <div>
@@ -537,15 +535,14 @@ class ProfileContainer extends React.Component {
                                                 this.l2ShowCantSeeQR = true
                                               }}
                                             >
-                                              Can&apos;t scan the QR code?
+                                              QR kodunu okutamıyor musunuz?
                                             </a>
                                           </div>
                                         </div>
                                         {this.l2ShowCantSeeQR && (
                                           <div style={{ alignSelf: 'center', marginBottom: 15 }}>
                                             <p style={{ fontSize: '13px' }}>
-                                              If you are unable to scan the QR code, open the authenticator app and
-                                              select the option that allows you to enter the below key manually.
+                                            QR kodunu tarayamıyorsanız, kimlik doğrulama uygulamasını açın ve aşağıdaki anahtarı manuel olarak girmenize izin veren seçeneği seçin.
                                             </p>
                                             <p style={{ textAlign: 'center' }}>
                                               <span
@@ -564,14 +561,13 @@ class ProfileContainer extends React.Component {
                                           </div>
                                         )}
                                         <p style={{ fontWeight: 500 }}>
-                                          After scanning the QR code, enter the 6-digit verification code below to
-                                          activate two-factor authentication on your account.
+                                        QR kodunu taradıktan sonra, hesabınızda iki faktörlü kimlik doğrulamayı etkinleştirmek için aşağıya 6 haneli doğrulama kodunu girin.
                                         </p>
-                                        <label>Verification Code</label>
+                                        <label>Doğrulama kodu</label>
                                         <Input type={'text'} onChange={val => (this.l2VerifyText = val)} />
                                         <div style={{ marginTop: 25 }}>
                                           <Button
-                                            text={'Verify and continue'}
+                                            text={'Doğrula ve Devam Et'}
                                             style={'primary'}
                                             small={true}
                                             waves={true}
@@ -588,18 +584,17 @@ class ProfileContainer extends React.Component {
                             {this.props.sessionUser.hasL2Auth && (
                               <div>
                                 <h4 style={{ fontWeight: 500 }}>
-                                  Two-factor authentication is{' '}
+                                  İki Aşamalı Doğrulama {' '}
                                   <span className={'uk-text-success'} style={{ fontWeight: 600 }}>
-                                    enabled
+                                    aktif
                                   </span>
                                 </h4>
                                 <p style={{ fontSize: '12px' }}>
-                                  By disabling two-factor authentication, your account will be protected with only your
-                                  password.
+                                İki faktörlü kimlik doğrulamayı devre dışı bırakarak, hesabınız yalnızca şifrenizle korunacaktır.
                                 </p>
                                 <div>
                                   <Button
-                                    text={'Disable'}
+                                    text={'Deaktive et'}
                                     style={'danger'}
                                     small={true}
                                     onClick={e => this.onDisableMFAClicked(e)}
@@ -614,9 +609,9 @@ class ProfileContainer extends React.Component {
                   </TruTabSection>
                   <TruTabSection sectionId={2} style={{ minHeight: 480 }}>
                     <div style={{ maxWidth: 450, padding: '10px 25px' }}>
-                      <h4 style={{ marginBottom: 15 }}>UI Preferences</h4>
+                      <h4 style={{ marginBottom: 15 }}>Arayüz tercihleri</h4>
                       <div className={'uk-clearfix uk-margin-large-bottom'}>
-                        <label style={{ fontSize: '13px' }}>Timezone</label>
+                        <label style={{ fontSize: '13px' }}>Zaman dilimi</label>
                         <SingleSelect
                           items={this._getTimezones()}
                           defaultValue={this.timezone || undefined}
@@ -625,7 +620,7 @@ class ProfileContainer extends React.Component {
                       </div>
                       <div>
                         <Button
-                          text={'Save Preferences'}
+                          text={'Tercihleri Kaydet'}
                           style={'primary'}
                           small={true}
                           type={'button'}

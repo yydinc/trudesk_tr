@@ -84,7 +84,7 @@ class OffCanvasEditor extends React.Component {
         <div className='edit-window-wrapper'>
           {this.showSubject && (
             <div className='edit-subject-wrap'>
-              <label htmlFor='edit-subject-input'>Subject</label>
+              <label htmlFor='edit-subject-input'>Başlık</label>
               <input
                 id='edit-subject-input'
                 className='md-input mb-10'

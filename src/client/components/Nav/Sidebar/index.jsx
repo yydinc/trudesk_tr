@@ -101,7 +101,7 @@ class Sidebar extends React.Component {
             )}
             {sessionUser && Helpers.canUser('tickets:view') && (
               <SidebarItem
-                text='Tickets'
+                text='Çağrılar'
                 icon='assignment'
                 href='/tickets'
                 class='navTickets no-ajaxy'
@@ -111,19 +111,19 @@ class Sidebar extends React.Component {
               >
                 <Submenu id='tickets'>
                   <SubmenuItem
-                    text='Active'
+                    text='Aktif'
                     icon='timer'
                     href='/tickets/active'
                     active={activeSubItem === 'tickets-active'}
                   />
                   <SubmenuItem
-                    text='Assigned'
+                    text='Atanılmış'
                     icon='assignment_ind'
                     href='/tickets/assigned'
                     active={activeSubItem === 'tickets-assigned'}
                   />
                   <SubmenuItem
-                    text='Unassigned'
+                    text='Atanılmamış'
                     icon='person_add_disabled'
                     href='/tickets/unassigned'
                     active={activeSubItem === 'tickets-unassigned'}
@@ -132,7 +132,7 @@ class Sidebar extends React.Component {
               </SidebarItem>
             )}
             <SidebarItem
-              text='Messages'
+              text='Mesajlar'
               icon='chat'
               href='/messages'
               class='navMessages'
@@ -326,14 +326,16 @@ class Sidebar extends React.Component {
                 </Submenu>
               </SidebarItem>
             )}
-            <NavSeparator />
-            <SidebarItem href='/about' icon='help' text='About' active={activeItem === 'about'} />
+
+            {/*<NavSeparator />
+            <SidebarItem href='/about' icon='help' text='Hakkında' active={activeItem === 'about'} />
+            */}
             {/*<SidebarItem href={'https://www.trudesk.io'} icon={'cloud'} text={'Cloud'} target={'_blank'} />*/}
           </ul>
         </div>
         <div className='side-nav-bottom-panel'>
           <a id='expand-menu' className='no-ajaxy' href='#'>
-            <i className='material-icons'>menu</i>Collapse Menu
+            <i className='material-icons'>menu</i>Menüyü daralt
           </a>
         </div>
       </div>

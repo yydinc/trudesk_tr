@@ -73,18 +73,18 @@ class NotificationsDropdownPartial extends React.Component {
       <PDropdown
         ref={forwardedRef}
         id={'notifications'}
-        title={'Notifications'}
+        title={'Bildirimler'}
         topOffset={-4}
         leftOffset={4}
         rightComponent={
           <a className={'hoverUnderline no-ajaxy'} onClick={e => this.clearNotificationsClicked(e)}>
-            Clear Notifications
+            Bildirimleri temizle
           </a>
         }
         footerComponent={
           <div className={'uk-text-center' + (this.notifications.length < 1 ? ' hide' : '')}>
             <a className={'no-ajaxy hoverUnderline'} onClick={this.props.onViewAllNotificationsClick}>
-              View All Notifications
+              Tüm bildirimleri görüntüle
             </a>
           </div>
         }

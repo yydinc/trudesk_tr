@@ -23,8 +23,13 @@ FROM node:16.14-alpine
 WORKDIR /usr/src/trudesk
 RUN apk add --no-cache ca-certificates bash mongodb-tools && rm -rf /tmp/*
 COPY --from=builder /usr/src/trudesk .
+COPY ./public/img/defaultProfile.jpg /usr/src/trudesk/public/uploads/users/defaultProfile.jpg
 #COPY --from=gcsfuse /go/bin/gcsfuse /usr/local/bin
 
 EXPOSE 8118
 
-CMD [ "/bin/bash", "/usr/src/trudesk/startup.sh" ]
+RUN mkdir -p /usr/src/trudesk/public/uploads/users
+
+CMD ["node", "/usr/src/trudesk/runner.js"]
+
+#CMD [ "/bin/bash", "/usr/src/trudesk/startup.sh" ]

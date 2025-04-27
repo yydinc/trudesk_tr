@@ -309,7 +309,7 @@ class MessagesContainer extends React.Component {
         <Grid>
           <GridItem width={'3-10'} extraClass={'full-height'}>
             <PageTitle
-              title={'Conversations'}
+              title={'Yazışmalar'}
               extraClasses={'page-title-border-right'}
               hideBorderBottom={true}
               rightComponent={
@@ -317,7 +317,7 @@ class MessagesContainer extends React.Component {
                   <div id='convo-actions' style={{ position: 'absolute', top: 20, right: 15 }}>
                     {!this.userListShown && (
                       <a
-                        title='Start Conversation'
+                        title='Yazışma başlat'
                         className='no-ajaxy'
                         style={{ display: 'block', height: 28 }}
                         onClick={e => this.showUserList(e)}
