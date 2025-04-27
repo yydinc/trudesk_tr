@@ -1,6 +1,7 @@
 services:
   trudesk:
     build:
+      context: .
       dockerfile: ./Dockerfile
     restart: always
     ports:
